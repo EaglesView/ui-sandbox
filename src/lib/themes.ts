@@ -1,180 +1,185 @@
-import { ThemeConfig, baseTheme } from "./theme-config";
-/**
- * Light theme basic
- */
-export const lightTheme: ThemeConfig = {
-  name: "light",
-  ...baseTheme,
-  colors: {
-    background: "#ffffff",
-    foreground: "#171717", 
-    primary: {
-      DEFAULT: "#0070f3",
-      foreground: "#ffffff",
-      50: "#f0f9ff",
-      100: "#e0f2fe",
-      200: "#bae6fd",
-      300: "#7dd3fc",
-      400: "#38bdf8",
-      500: "#0ea5e9",
-      600: "#0284c7",
-      700: "#0369a1",
-      800: "#075985",
-      900: "#0c4a6e",
-    },
-    secondary: {
-      DEFAULT: "#6b7280",
-      foreground: "#ffffff",
-      50: "#f9fafb",
-      100: "#f3f4f6",
-      200: "#e5e7eb",
-      300: "#d1d5db",
-      400: "#9ca3af",
-      500: "#6b7280",
-      600: "#4b5563",
-      700: "#374151",
-      800: "#1f2937",
-      900: "#111827",
-    },
-    muted: {
-      DEFAULT: "#f3f4f6",
-      foreground: "#6b7280",
-    },
-    accent: {
-      DEFAULT: "#8b5cf6",
-      foreground: "#ffffff",
-    },
-    destructive: {
-      DEFAULT: "#ef4444",
-      foreground: "#ffffff",
-    },
-    border: "#e5e7eb",
-    card: {
-      DEFAULT: "#ffffff",
-      foreground: "#171717",
-    },
-    input: "#e5e7eb",
+// src/lib/theme.ts
+export type ThemeColors = 
+  | 'background'
+  | 'foreground'
+  | 'primary'
+  | 'primary-foreground'
+  | 'secondary'
+  | 'secondary-foreground'
+  | 'muted'
+  | 'muted-foreground'
+  | 'accent'
+  | 'accent-foreground'
+  | 'destructive'
+  | 'destructive-foreground'
+  | 'border'
+  | 'card'
+  | 'card-foreground'
+  | 'input';
+
+type ThemeValues = Record<string, string>;
+
+// Define base themes (these are the only themes defined directly)
+export const baseThemes = {
+  light: {
+    'background': '255 255 255',
+    'foreground': '23 23 23',
+    'primary': '0 112 243',
+    'primary-foreground': '255 255 255',
+    'secondary': '107 114 128',
+    'secondary-foreground': '255 255 255',
+    'muted': '243 244 246',
+    'muted-foreground': '107 114 128',
+    'accent': '139 92 246',
+    'accent-foreground': '255 255 255',
+    'destructive': '239 68 68',
+    'destructive-foreground': '255 255 255',
+    'border': '229 231 235',
+    'card': '255 255 255',
+    'card-foreground': '23 23 23',
+    'input': '229 231 235',
   },
-};
-/**
- * Dark theme basic
- */
-export const darkTheme: ThemeConfig = {
-  name: "dark-purple",
-  ...baseTheme,
-  colors: {
-    background: "#0a0a0a",
-    foreground: "#ededed",
-    primary: {
-      DEFAULT: "#0ea5e9",
-      foreground: "#ffffff",
-      50: "#0c4a6e",
-      100: "#075985",
-      200: "#0369a1",
-      300: "#0284c7",
-      400: "#0ea5e9",
-      500: "#38bdf8",
-      600: "#7dd3fc",
-      700: "#bae6fd",
-      800: "#e0f2fe",
-      900: "#f0f9ff",
-    },
-    secondary: {
-      DEFAULT: "#9ca3af",
-      foreground: "#ffffff",
-      50: "#111827",
-      100: "#1f2937",
-      200: "#374151",
-      300: "#4b5563",
-      400: "#6b7280",
-      500: "#9ca3af",
-      600: "#d1d5db",
-      700: "#e5e7eb",
-      800: "#f3f4f6",
-      900: "#f9fafb",
-    },
-    muted: {
-      DEFAULT: "#111827",
-      foreground: "#9ca3af",
-    },
-    accent: {
-      DEFAULT: "#a78bfa",
-      foreground: "#ffffff",
-    },
-    destructive: {
-      DEFAULT: "#f87171",
-      foreground: "#ffffff",
-    },
-    border: "#374151",
-    card: {
-      DEFAULT: "#1f2937",
-      foreground: "#ededed",
-    },
-    input: "#374151",
+  dark: {
+    'background': '10 10 10',
+    'foreground': '237 237 237',
+    'primary': '14 165 233',
+    'primary-foreground': '255 255 255',
+    'secondary': '156 163 175',
+    'secondary-foreground': '255 255 255',
+    'muted': '31 41 55',
+    'muted-foreground': '156 163 175',
+    'accent': '167 139 250',
+    'accent-foreground': '255 255 255',
+    'destructive': '248 113 113',
+    'destructive-foreground': '255 255 255',
+    'border': '55 65 81',
+    'card': '31 41 55',
+    'card-foreground': '237 237 237',
+    'input': '55 65 81',
   },
+  darkpurple: {
+    'background': '12 3 14',
+    'foreground': '197 184 200',
+    'primary': '129 44 157',
+    'primary-foreground': '238 218 245',
+    'secondary': '199 67 145',
+    'secondary-foreground': '217 136 184',
+    'muted': '31 41 55',
+    'muted-foreground': '156 163 175',
+    'accent': '167 139 250',
+    'accent-foreground': '255 255 255',
+    'destructive': '248 113 113',
+    'destructive-foreground': '255 255 255',
+    'border': '55 65 81',
+    'card': '31 41 55',
+    'card-foreground': '237 237 237',
+    'input': '55 65 81',
+  }
 };
-/**
- * Dark theme Purple
- */
-export const darkThemePurple: ThemeConfig = {
-    name: "dark",
-    ...baseTheme,
-    colors: {
-      background: "#0C030E",
-      foreground: "#C5B8C8",
-      primary: {
-        DEFAULT: "#812c9d",
-        foreground: "#eedaf5",
-        50: "#70238a",
-        100: "#812c9d",
-        200: "#9033af",
-        300: "#a541c6",
-        400: "#aa4dc9",
-        500: "#b564cf",
-        600: "#c688da",
-        700: "#dab2e7",
-        800: "#eedaf5",
-        900: "#faeefe",
-      },
-      secondary: {
-        DEFAULT: "#c74391",
-        foreground: "#d988b8",
-        50: "#8a2361",
-        100: "#9d2e70",
-        200: "#b0357d",
-        300: "#c74391",
-        400: "#c94f97",
-        500: "#cf64a4",
-        600: "#d988b8",
-        700: "#e5b3d1",
-        800: "#f1dbe8",
-        900: "#fbeff6",
-      },
-      muted: {
-        DEFAULT: "#1f2937",
-        foreground: "#9ca3af",
-      },
-      accent: {
-        DEFAULT: "#a78bfa",
-        foreground: "#ffffff",
-      },
-      destructive: {
-        DEFAULT: "#f87171",
-        foreground: "#ffffff",
-      },
-      border: "#374151",
-      card: {
-        DEFAULT: "#1f2937",
-        foreground: "#ededed",
-      },
-      input: "#374151",
-    },
+
+// This function injects the base themes as CSS
+export function injectBaseThemes() {
+  // Only run in browser environment
+  if (typeof document === 'undefined') return;
+  
+  // Create a style element
+  const style = document.createElement('style');
+  
+  // Generate CSS for each theme
+  let css = ':root {';
+  
+  // Add default light theme variables to :root
+  Object.entries(baseThemes.light).forEach(([key, value]) => {
+    css += `\n  --${key}: ${value};`;
+  });
+  css += '\n}\n';
+  
+  // Add other themes as CSS classes
+  Object.entries(baseThemes).forEach(([themeName, themeValues]) => {
+    if (themeName === 'light') return; // Skip light theme as it's already in :root
+    
+    css += `\n.${themeName} {`;
+    Object.entries(themeValues).forEach(([key, value]) => {
+      css += `\n  --${key}: ${value};`;
+    });
+    css += '\n}\n';
+  });
+  
+  // Set the CSS content
+  style.textContent = css;
+  
+  // Append to head
+  document.head.appendChild(style);
+}
+
+// Extending base themes with custom themes
+export type ThemeName = 
+  | keyof typeof baseThemes 
+  | 'custom-light' 
+  | 'custom-dark';
+
+// Get locally saved custom themes
+export function getSavedThemes(): Record<string, ThemeValues> {
+  if (typeof window === 'undefined') return {};
+  
+  const customLight = localStorage.getItem('custom-light-theme');
+  const customDark = localStorage.getItem('custom-dark-theme');
+  
+  return {
+    'custom-light': customLight ? JSON.parse(customLight) : null,
+    'custom-dark': customDark ? JSON.parse(customDark) : null
   };
+}
 
-export const themes = {
-  light: lightTheme,
-  dark: darkTheme,
-  darkpurple:darkThemePurple,
-};
+// Save a custom theme
+export function saveTheme(name: 'custom-light' | 'custom-dark', values: ThemeValues) {
+  if (typeof window === 'undefined') return;
+  
+  localStorage.setItem(`${name}-theme`, JSON.stringify(values));
+}
 
-export type ThemeName = keyof typeof themes;
+// Apply theme by directly setting CSS variables
+export function applyTheme(theme: ThemeName | ThemeValues) {
+  if (typeof window === 'undefined') return;
+  
+  const root = document.documentElement;
+  const savedThemes = getSavedThemes();
+  
+  // Apply a named theme
+  if (typeof theme === 'string') {
+    // Get theme values - either from base themes or saved custom themes
+    let themeValues: ThemeValues | null = null;
+    
+    if (theme in baseThemes) {
+      themeValues = baseThemes[theme as keyof typeof baseThemes];
+    } else if (theme === 'custom-light' && savedThemes['custom-light']) {
+      themeValues = savedThemes['custom-light'];
+    } else if (theme === 'custom-dark' && savedThemes['custom-dark']) {
+      themeValues = savedThemes['custom-dark'];
+    } else {
+      // Fallback to light or dark theme
+      themeValues = baseThemes[theme.includes('dark') ? 'dark' : 'light'];
+    }
+    
+    if (!themeValues) return;
+    
+    // Apply each CSS variable
+    Object.entries(themeValues).forEach(([key, value]) => {
+      root.style.setProperty(`--${key}`, value);
+    });
+    
+    // Set data attribute for any CSS selectors that need it
+    root.setAttribute('data-theme', theme);
+    
+    // Remove all theme classes and add the current one
+    root.classList.remove(...Object.keys(baseThemes), 'custom-light', 'custom-dark');
+    root.classList.add(theme);
+    
+    return;
+  }
+  
+  // Apply custom theme values directly
+  Object.entries(theme).forEach(([key, value]) => {
+    root.style.setProperty(`--${key}`, value);
+  });
+}

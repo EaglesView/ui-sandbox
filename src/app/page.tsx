@@ -6,6 +6,20 @@ import { useTheme } from "./ThemeProvider";
 import { ExtendingDocs } from "@/components/ExtendingDocs";
 import { CardExamples } from "@/components/CardExamples";
 import Switch from "@/components/Showcase/Switch";
+import { ThemeCustomizer } from "@/components/Showcase/ThemeCustomizer";
+import ColorSwatch, { ColorSwatchProps } from "@/components/ui/ColorSwatch";
+
+const colorSwatches: ColorSwatchProps[] = [
+  { name: "Background", variable: "background" },
+  { name: "Foreground", variable: "foreground" },
+  { name: "Primary", variable: "primary" },
+  { name: "Secondary", variable: "secondary" },
+  { name: "Accent", variable: "accent" },
+  { name: "Muted", variable: "muted" },
+  { name: "Destructive", variable: "destructive" },
+  { name: "Card", variable: "card" },
+  { name: "Border", variable: "border" },
+];
 /**
  * Rough draft of the home page so far
  * This is just to test many things at once, and will be properly separated like a messy nextjs project
@@ -128,40 +142,22 @@ export default function Home() {
           <CardExamples />
         </section>
         <section>
+
           <h2 className="text-2xl font-semibold mb-6">Theme Colors</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="flex flex-col gap-2">
-              <div className="h-20 rounded-radius-md bg-primary"></div>
-              <p className="text-sm font-medium">Primary</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="h-20 rounded-radius-md bg-secondary"></div>
-              <p className="text-sm font-medium">Secondary</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="h-20 rounded-radius-md bg-accent"></div>
-              <p className="text-sm font-medium">Accent</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="h-20 rounded-radius-md bg-destructive"></div>
-              <p className="text-sm font-medium">Destructive</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="h-20 rounded-radius-md bg-muted"></div>
-              <p className="text-sm font-medium">Muted</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="h-20 rounded-radius-md bg-card border border-border"></div>
-              <p className="text-sm font-medium">Card</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="h-20 rounded-radius-md" style={{ backgroundColor: "rgb(var(--background))" }}></div>
-              <p className="text-sm font-medium">Background</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="h-20 rounded-radius-md border border-border"></div>
-              <p className="text-sm font-medium">Border</p>
-            </div>
+          <div className="grid grid-flow-col grid-cols-2 grid-rows-2 md:grid-cols-6 gap-4">
+          <ThemeCustomizer className={"col-span-2 row-span-2"} />
+            <Card className=" col-span-4 row-span-2 grid grid-flow-row grid-cols-2 grid-rows-2 md:grid-cols-4 p-4 gap-4">
+            {colorSwatches.map((value,index)=>(
+              <ColorSwatch
+                key={index}
+                name={value.name}
+                variable={value.variable}
+                
+              />
+            ))}
+            
+            </Card>
+         
           </div>
         </section>
       </main>
