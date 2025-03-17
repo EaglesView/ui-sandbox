@@ -1,102 +1,180 @@
-import Image from "next/image";
+"use client";
 
+import { Button } from "@/components/ui/Button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
+import { useTheme } from "./ThemeProvider";
+import { ExtendingDocs } from "@/components/ExtendingDocs";
+import { CardExamples } from "@/components/CardExamples";
+import Switch from "@/components/Showcase/Switch";
+/**
+ * Rough draft of the home page so far
+ * This is just to test many things at once, and will be properly separated like a messy nextjs project
+ * enjoy!
+ * 
+ */
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const { theme } = useTheme();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+  return (
+    <div className="min-h-screen p-8">
+      <header className="flex justify-between items-center mb-12">
+        <h1 className="text-3xl md:text-6xl font-bold md:font-thin">ATOTUI</h1>
+      </header>
+
+      <main className="space-y-10">
+        <section className="mb-12">
+          <h2 className="text-2xl mb-4">About This Library</h2>
+          <p className="max-w-3xl text-lg text-muted-foreground">
+            This is a themeable component library built with Radix UI Primitives and Tailwind CSS.
+            The goal is to create a library that is fully customizeable.
+          </p>
+        </section>
+        <section id="components" className="grid grid-flow-col gap-2 grid-cols-5 grid-rows-4">
+          <Card id="button-variants" className="col-span-4 row-span-2">
+            <CardHeader>
+              <h2 className="text-2xl font-semibold mb-6">Button Variants</h2>
+            </CardHeader>
+            <CardContent>
+            <div className="flex flex-wrap gap-4">
+              <Button>Default Button</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="destructive">Destructive</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="link">Link Button</Button>
+            </div>
+            </CardContent>
+
+            
+          </Card>
+          <Card className="flex flex-wrap items-center gap-4 row-span-2 col-span-2">
+            <CardHeader>
+              <h2 className="text-2xl font-semibold mb-6">Button Sizes</h2>
+            </CardHeader>
+            <CardContent className="gap-4 flex items-center">
+            <Button size="sm">Small</Button>
+            <Button size="default">Default</Button>
+            <Button size="lg">Large</Button>
+            <Button size="icon">🔍</Button>
+            </CardContent>
+
+          </Card>
+          <Card className="flex flex-wrap flex-col items-center gap-4 row-span-2 col-span-2">
+            <CardHeader>
+              <h2 className="text-2xl font-semibold mb-6">Switches</h2>
+            </CardHeader>
+            <CardContent className="gap-4 w-full flex flex-col flex-wrap items-center justify-center">
+              <Card className="w-full p-2">
+              <h2>Light Themes</h2>
+              <Switch title="Light "/>
+              </Card>
+             <Card className="dark w-full p-2">
+             <h2>Dark Themes</h2>
+             <Switch title="Dark" className="dark"/>
+             </Card>
+            </CardContent>
+
+          </Card>
+        </section>
+
+  
+
+        <section>
+          <h2 className="text-2xl font-semibold mb-6">Cards</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Basic Card</CardTitle>
+                <CardDescription>Card description goes here</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>This is the main content of the card. It can contain any elements.</p>
+              </CardContent>
+              <CardFooter>
+                <Button>Action</Button>
+              </CardFooter>
+            </Card>
+
+            <Card className="bg-secondary">
+              <CardHeader>
+                <CardTitle>Card with Secondary Color</CardTitle>
+                <CardDescription>Showcase a product feature</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>This card demonstrates how the component adapts to the current theme.</p>
+                <p className="mt-2">Current theme: <strong>{theme}</strong></p>
+              </CardContent>
+              <CardFooter className="justify-between">
+                <Button variant="ghost">Cancel</Button>
+                <Button>Continue</Button>
+              </CardFooter>
+            </Card>
+
+            <Card useFramerMotion animate animationVariant="scale" animationDuration="default" className="bg-accent">
+              <CardHeader>
+                <CardTitle>Card with Accent Color</CardTitle>
+                <CardDescription>Styling options</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Cards can be customized while maintaining theme consistency.</p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="outline">Learn More</Button>
+              </CardFooter>
+            </Card>
+          </div>
+        </section>
+        <section>
+          <CardExamples />
+        </section>
+        <section>
+          <h2 className="text-2xl font-semibold mb-6">Theme Colors</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="flex flex-col gap-2">
+              <div className="h-20 rounded-radius-md bg-primary"></div>
+              <p className="text-sm font-medium">Primary</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="h-20 rounded-radius-md bg-secondary"></div>
+              <p className="text-sm font-medium">Secondary</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="h-20 rounded-radius-md bg-accent"></div>
+              <p className="text-sm font-medium">Accent</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="h-20 rounded-radius-md bg-destructive"></div>
+              <p className="text-sm font-medium">Destructive</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="h-20 rounded-radius-md bg-muted"></div>
+              <p className="text-sm font-medium">Muted</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="h-20 rounded-radius-md bg-card border border-border"></div>
+              <p className="text-sm font-medium">Card</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="h-20 rounded-radius-md" style={{ backgroundColor: "rgb(var(--background))" }}></div>
+              <p className="text-sm font-medium">Background</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="h-20 rounded-radius-md border border-border"></div>
+              <p className="text-sm font-medium">Border</p>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <section className="mt-16">
+        <h2 className="text-2xl font-semibold mb-6">Extending The Library</h2>
+        <ExtendingDocs />
+      </section>
+
+      <footer className="mt-20 pt-8 border-t border-border">
+        <p className="text-center text-muted-foreground">
+          Themeable UI Component Library built with Radix UI and Tailwind CSS
+        </p>
       </footer>
     </div>
   );
